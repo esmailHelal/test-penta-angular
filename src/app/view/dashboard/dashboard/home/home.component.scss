@@ -1,0 +1,13 @@
+.ad_list{
+    margin-top: 2rem;
+    padding-inline: 2rem;
+    .add_new{
+        display: flex;
+        justify-content: end;
+        margin-block: 1rem;
+        button{
+            background: #06305d;
+            color: white;
+        }
+    }
+}

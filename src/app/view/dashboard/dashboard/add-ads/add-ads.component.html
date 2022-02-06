@@ -1,0 +1,160 @@
+<section class="add">
+  <div class="container-fluid">
+    <div class="px-5">
+      <form class="row" #myForm="ngForm" (ngSubmit)="AddList(myForm)">
+        <div class="form-group col-md-6 my-3">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            ngModel
+            name="type"
+            #type="ngModel"
+            required
+            [ngClass]="{
+              'is-invalid': type.errors?.required && type.touched
+            }"
+            required
+          >
+            <option value="1">video</option>
+            <option value="2">image</option>
+          </select>
+          <div
+            class="invalid-feedback"
+            *ngIf="type.errors?.required && type.touched"
+          >
+            <!--  {{ "this is require" | translate }} -->
+            this is require
+          </div>
+        </div>
+        <div class="form-group col-md-6 my-3">
+          <input
+            type="url"
+            class="form-control col-md-6"
+            placeholder="enter link"
+            ngModel
+            name="url"
+            #url="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                (url.errors?.required && url.touched) ||
+                (url.errors?.pattern && url.touched)
+            }"
+            required
+            pattern="(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="url.errors?.required && url.touched"
+          >
+            this is require
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="url.errors?.pattern && url.touched"
+          >
+            this is not url
+          </div>
+        </div>
+        <div class="form-group col-md-6 my-3">
+          <input
+            type="datetime-local"
+            class="form-control col-md-6"
+            placeholder="enter date and time from"
+            ngModel
+            name="from"
+            #from="ngModel"
+            [ngClass]="{
+              'is-invalid': from.errors?.required && from.touched
+            }"
+            required
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="from.errors?.required && from.touched"
+          >
+            <!--  {{ "this is require" | translate }} -->
+            this is require
+          </div>
+        </div>
+        <div class="form-group col-md-6 my-3">
+          <input
+            type="datetime-local"
+            class="form-control col-md-6"
+            placeholder="enter date and time to"
+            ngModel
+            name="to"
+            #to="ngModel"
+            [ngClass]="{
+              'is-invalid': to.errors?.required && to.touched
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="to.errors?.required && to.touched"
+          >
+            <!--  {{ "this is require" | translate }} -->
+            this is require
+          </div>
+        </div>
+
+        <div class="add_new">
+            <button type="submit" name="" id="" class="btn btn-primary" >Add </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div
+  class="modal fade"
+  id="popup"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div
+        class="
+          modal-body
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+          display
+        "
+      >
+        <img
+          src="..\..\..\assets\Account.gif"
+          class="image w-75"
+          *ngIf="valid == true"
+        />
+        <img
+          src="..\..\..\assets\Login.gif"
+          class="image w-75"
+          *ngIf="invalid == true"
+        />
+      </div>
+      <div
+        class="
+          modal-footer
+          display
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+        "
+      >
+       
+        <h2 class="font" *ngIf="invalid == true">
+         
+            Check your information again
+        
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<section class="ad_list">
+  <div class="container-fluid">
+      <div class="add_new">
+          <button type="button" name="" id="" class="btn btn-primary" routerLink="/dashboard/ad/add" >Add New</button>
+      </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">type</th>
+          <th scope="col">from</th>
+          <th scope="col">to</th>
+          <th scope="col">action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of apiservice.list_ad; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <ng-container *ngIf="item.image == ''; else elseTemplate">
+            <td>video</td>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <td>image</td>
+          </ng-template>
+
+          <td>{{ item.from_time }}</td>
+          <td>{{ item.to_time }}</td>
+          <td>
+            <div class="btn-group" role="group">
+              <button
+                id="btnGroupDrop1"
+                type="button"
+                class="btn btn-link py-0"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="fa fa-ellipsis-v"></span>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" routerLink="/dashboard/ad/edit/{{i}}"> Edit </a>
+
+                <button type="submit" class="dropdown-item" (click)="Delete(i)">Delete</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

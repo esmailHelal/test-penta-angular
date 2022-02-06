@@ -1,0 +1,24 @@
+<section class="home">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3" *ngFor="let item of apiservice.list_ad">
+               <div class="card mb-3" >
+                   <img [src]="item.image" class="card-img-top"  *ngIf="item.image != ''">
+                   <video controls class="card-video-top" *ngIf="item.video != ''">
+                       <source [src]="item.video" type="video/mp4" >
+                     </video>
+                   <div class="card-body row">
+                     <div class="from col-md-6 mt-2">
+                        <span>from</span>  : {{item.from_time}} 
+                     </div>
+
+                     <div class="to col-md-6 mt-2">
+                        <span>to</span> : {{item.to_time}} 
+                    </div>
+                   </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+ 
+</section>

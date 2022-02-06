@@ -1,0 +1,21 @@
+.form-group {
+    position: relative;
+    .invalid-feedback {
+        display: block;
+        position: absolute;
+        bottom: -25px;
+        font-size: 80%;
+        color: #dc3545;
+        text-align: left;
+    }
+}
+
+.add_new{
+    display: flex;
+    justify-content: end;
+    margin-block: 1rem;
+    button{
+        background: #06305d;
+        color: white;
+    }
+}

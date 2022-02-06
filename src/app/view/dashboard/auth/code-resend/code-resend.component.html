@@ -1,0 +1,139 @@
+<section class="codeSend">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center ">
+        <div class="col-xl-5 col-lg-7 col-md-8 resBody ">
+          <div class="bodyLogin shadow">
+            <div class="headText">
+              <!-- {{ "Code To verify Your phone" | translate }} -->
+              Code To verify Your phone
+            </div>
+
+           
+
+            <form
+              #myForm="ngForm"
+              (ngSubmit)="sendcode(myForm)"
+             
+            >
+              <div class="form-group mt-2">
+                <input
+                  type="text"
+                  name="code"
+                  placeholder="code number"
+                  ngModel
+                  #code="ngModel"
+                  required="required"
+                  [ngClass]="{
+                    'is-invalid': code.errors?.required && code.touched
+                  }"
+                />
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="code.errors?.required && code.touched"
+                >
+                  
+                  this is require
+                </div>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="
+                    btn
+                    button
+                    btn-block w-100
+                    d-flex
+                    justify-content-center
+                  "
+                  [disabled]="loadingsingleprodc"
+                >
+                  <ng-container *ngIf="loadingsingleprodc == false">
+                    
+                    Send Code
+                  </ng-container>
+
+                  <ng-container *ngIf="loadingsingleprodc">
+                    <div class="sk-circle load">
+                      <div class="sk-circle1 sk-child"></div>
+                      <div class="sk-circle2 sk-child"></div>
+                      <div class="sk-circle3 sk-child"></div>
+                      <div class="sk-circle4 sk-child"></div>
+                      <div class="sk-circle5 sk-child"></div>
+                      <div class="sk-circle6 sk-child"></div>
+                      <div class="sk-circle7 sk-child"></div>
+                      <div class="sk-circle8 sk-child"></div>
+                      <div class="sk-circle9 sk-child"></div>
+                      <div class="sk-circle10 sk-child"></div>
+                      <div class="sk-circle11 sk-child"></div>
+                      <div class="sk-circle12 sk-child"></div>
+                    </div>
+                  </ng-container>
+                </button>
+              </div>
+            </form>
+
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="imageBac"></div>
+<div
+  class="modal fade"
+  id="popup"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div
+        class="
+          modal-body
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+          display
+        "
+      >
+        <img
+          src="..\..\..\assets\Account.gif"
+          class="image w-75"
+          *ngIf="valid == true"
+        />
+        <img
+          src="..\..\..\assets\Login.gif"
+          class="image w-75"
+          *ngIf="invalid == true"
+        />
+     
+      </div>
+      <div
+        class="
+          modal-footer
+          display
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+        "
+      >
+        <h2 class="font" *ngIf="valid == true">
+          <!-- {{ "register succesfully" | translate }} -->
+          register succesfully
+        </h2>
+        <h2 class="font" *ngIf="invalid == true">
+          <!-- {{ "Wrong code" | translate }} -->
+          Wrong code
+        </h2>
+       
+      </div>
+    </div>
+  </div>
+</div>

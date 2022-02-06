@@ -1,0 +1,184 @@
+<section class="login">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <div class="col-xl-5 col-lg-6 col-md-8 resBody ">
+          <div class="bodyLogin shadow">
+            <div class="headText">
+              Login to your Dashboard
+            </div>
+            
+           
+            <form #myForm="ngForm" (ngSubmit)="login(myForm)">
+              <div class="form-group my-2">
+                <input
+                  type="text"
+                  placeholder="Enter your Email"
+                  ngModel
+                  name="email"
+                  #email="ngModel"
+                  required
+                  [ngClass]="{
+                    'is-invalid': email.errors?.required && email.touched
+                  }"
+                  email
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="email.errors?.required && email.touched"
+                >
+                  <!--  {{ "this is require" | translate }} -->
+                  this is require
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="email.errors?.email && email.touched"
+                >
+                  Not a valid email
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  ngModel
+                  name="password"
+                  #password="ngModel"
+                  required
+                  minlength="6"
+                  maxlength="20"
+                  [ngClass]="{
+                    'is-invalid':
+                      (password.errors?.required && password.touched) ||
+                      (password.errors?.minlength && password.touched)
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="password.errors?.required && password.touched"
+                >
+                  <!--  {{ "please enter password" | translate }} -->
+                  please enter password
+                </div>
+                <!--  <div
+                  class="invalid-feedback"
+                  *ngIf="password.errors?.minlength && password.touched"
+                >
+                  min password
+                </div> -->
+              </div>
+              <div id="recaptcha-container" class="recaptcha-container mb-2"></div>
+             
+              <ng-container>
+                <div>
+                  <button
+                    type="submit"
+                    class="
+                      btn
+                      button
+                      btn-block w-100
+                      d-flex
+                      justify-content-center
+                    "
+                    [disabled]="loadingsingleprodc"
+                  >
+                    <ng-container *ngIf="loadingsingleprodc == false">
+                      <!--  {{ "Login" | translate }} -->
+                      Login
+                    </ng-container>
+
+                    <ng-container *ngIf="loadingsingleprodc">
+                      <div class="sk-circle load">
+                        <div class="sk-circle1 sk-child"></div>
+                        <div class="sk-circle2 sk-child"></div>
+                        <div class="sk-circle3 sk-child"></div>
+                        <div class="sk-circle4 sk-child"></div>
+                        <div class="sk-circle5 sk-child"></div>
+                        <div class="sk-circle6 sk-child"></div>
+                        <div class="sk-circle7 sk-child"></div>
+                        <div class="sk-circle8 sk-child"></div>
+                        <div class="sk-circle9 sk-child"></div>
+                        <div class="sk-circle10 sk-child"></div>
+                        <div class="sk-circle11 sk-child"></div>
+                        <div class="sk-circle12 sk-child"></div>
+                      </div>
+                    </ng-container>
+                  </button>
+
+                  <div class="lastText text-center">
+                   
+                    Don't Have An Account?
+                    <span routerLink="/dashboard/auth/register">
+                      Sign Up!</span
+                    >
+                  </div>
+                </div>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="imageBac"></div>
+
+<div
+  class="modal fade"
+  id="popup"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div
+        class="
+          modal-body
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+          display
+        "
+      >
+        <img
+          src="..\..\..\assets\Account.gif"
+          class="image w-75"
+          *ngIf="valid == true"
+        />
+        <img
+          src="..\..\..\assets\Login.gif"
+          class="image w-75"
+          *ngIf="invalid == true"
+        />
+      </div>
+      <div
+        class="
+          modal-footer
+          display
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+        "
+      >
+        <h2 class="font" *ngIf="valid == true">
+          <!-- {{ "Login succesfully" | translate }} -->
+          Login succesfully
+        </h2>
+        <h2 class="font" *ngIf="invalid == true">
+          <ng-container *ngIf="invaild_error == false">
+            <!--  {{ "Check your information again" | translate }} -->
+            Check your information again
+          </ng-container>
+
+          <ng-container *ngIf="invaild_error">{{ message }}</ng-container>
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>

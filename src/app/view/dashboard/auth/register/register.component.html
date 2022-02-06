@@ -1,0 +1,319 @@
+<section class="Register">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12"></div>
+      <div class="col-12 d-flex justify-content-center">
+        <div class="col-xl-5 col-lg-6 col-md-8 resBody ">
+          <div class="bodyRegister shadow">
+            <div class="headText mb-3">
+             
+              Sign Up Dashboard
+            </div>
+            
+            <form
+              #myForm="ngForm"
+              (ngSubmit)="register(myForm)"
+              [mustMatch]="['password', 'confirmPassword']"
+            >
+              <div class="form-group mb-2">
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  ngModel
+                  #username="ngModel"
+                  required="required"
+                  [ngClass]="{
+                    'is-invalid': username.errors?.required && username.touched
+                  }"
+                />
+
+                <div
+                  class="invalid-feedback"
+                  *ngIf="username.errors?.required && username.touched"
+                >
+                  this is require
+                </div>
+              </div>
+              <div class="form-group mb-2">
+                <input
+                  type="text"
+                  placeholder="email"
+                  ngModel
+                  name="email"
+                  #email="ngModel"
+                  required
+                  email
+                  [ngClass]="{
+                    'is-invalid':
+                      (email.errors?.required && email.touched) ||
+                      (email.errors?.email && email.touched)
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="email.errors?.required && email.touched"
+                >
+                  <!-- {{ "this is require" | translate }} -->
+                  this is require
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="email.errors?.email && email.touched"
+                >
+                  <!--  {{ "Not a valid email" | translate }} -->
+                  Not a valid email
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                   <ngx-intl-tel-input
+                  [cssClass]="
+                    (phone.errors?.required && phone.touched) ||
+                    (phone.errors?.validatePhoneNumber && phone.touched)
+                      ? 'is-invalid'
+                      : 'custom'
+                  "
+                  [preferredCountries]="preferredCountries"
+                  [enableAutoCountrySelect]="false"
+                  [enablePlaceholder]="true"
+                  [searchCountryFlag]="true"
+                  [phoneValidation]="true"
+                  maxLength="15"
+                  [searchCountryField]="arr"
+                  [separateDialCode]="true"
+                  ngModel
+                  name="phone"
+                  #phone="ngModel"
+                  required
+                >
+                </ngx-intl-tel-input> 
+
+                <!-- <input
+                  type="number"
+                  [placeholder]="
+                    apiservice.local_lenguage == 'en' ? 'phone' : 'رقم الهاتف'
+                  "
+                  ngModel
+                  name="phone"
+                  #phone="ngModel"
+                  required
+                  class="nu"
+                  [ngClass]="{
+                    'is-invalid': phone.errors?.required && phone.touched
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="phone.errors?.required && phone.touched"
+                >
+                 
+                  this is require
+                </div> -->
+                 <div class="row phone-r">
+                  <div
+                    class="invalid-feedback1 col-12"
+                    *ngIf="phone.errors?.required && phone.touched"
+                  >
+                   this is require
+                  </div>
+                    <div
+                    class="invalid-feedback1 col-12"
+                    *ngIf="phone.errors?.validatePhoneNumber && phone.touched"
+                  >
+                   this is not phone
+                  </div> 
+                </div> 
+              </div>
+              <div class="form-group mb-2">
+                <input
+                  [type]="hide ? 'password' : 'text'"
+                  placeholder="Password"
+                  ngModel
+                  name="password"
+                  #password="ngModel"
+                  required
+                  minlength="6"
+                  maxlength="20"
+                  [ngClass]="{
+                    'is-invalid':
+                      (password.errors?.required && password.touched) ||
+                      (password.errors?.minlength && password.touched)
+                  }"
+                />
+                <div
+                  class="invalid-feedback"
+                  *ngIf="password.errors?.required && password.touched"
+                >
+                  <!--   {{ "this is require" | translate }} -->
+                  this is require
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="password.errors?.minlength && password.touched"
+                >
+                  <!-- {{ "min Password" | translate }} -->
+                  min Password
+                </div>
+                <div class="eye" (click)="hide = !hide">
+                  <img
+                    [src]="hide ? 'assets/eye.svg' : 'assets/Group 5260.svg'"
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group mb-2">
+                <input
+                  [type]="hide1 ? 'password' : 'text'"
+                  placeholder="Confirm Password"
+                  ngModel
+                  name="confirmPassword"
+                  #confirmPassword="ngModel"
+                  required="required"
+                  [ngClass]="{
+                    'is-invalid':
+                      (confirmPassword.errors?.required &&
+                        confirmPassword.touched) ||
+                      (confirmPassword.errors?.mustMatch &&
+                        confirmPassword.touched)
+                  }"
+                />
+                <div
+                  class="invalid-feedback es-in"
+                  *ngIf="
+                    confirmPassword.errors?.required && confirmPassword.touched
+                  "
+                >
+                  <!--  {{ "this is require" | translate }} -->
+                  this is require
+                </div>
+
+                <div
+                  class="invalid-feedback es-in"
+                  *ngIf="
+                    confirmPassword.errors?.mustMatch && confirmPassword.touched
+                  "
+                >
+                  <!-- {{ "Passwords must match" | translate }} -->
+                  Passwords must match
+                </div>
+                <div class="eye" (click)="hide1 = !hide1">
+                  <img
+                    [src]="hide1 ? 'assets/eye.svg' : 'assets/Group 5260.svg'"
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+
+              <div id="recaptcha-container1" class="recaptcha-container1 mb-2"></div>
+              <ng-container>
+                <div>
+                  <button
+                    type="submit"
+                    class="
+                      btn
+                      button
+                      btn-block w-100
+                      d-flex
+                      justify-content-center
+                    "
+                    [disabled]="loadingsingleprodc"
+                  >
+                    <ng-container *ngIf="loadingsingleprodc == false">
+                      
+                      Register
+                    </ng-container>
+
+                    <ng-container *ngIf="loadingsingleprodc">
+                      <div class="sk-circle load">
+                        <div class="sk-circle1 sk-child"></div>
+                        <div class="sk-circle2 sk-child"></div>
+                        <div class="sk-circle3 sk-child"></div>
+                        <div class="sk-circle4 sk-child"></div>
+                        <div class="sk-circle5 sk-child"></div>
+                        <div class="sk-circle6 sk-child"></div>
+                        <div class="sk-circle7 sk-child"></div>
+                        <div class="sk-circle8 sk-child"></div>
+                        <div class="sk-circle9 sk-child"></div>
+                        <div class="sk-circle10 sk-child"></div>
+                        <div class="sk-circle11 sk-child"></div>
+                        <div class="sk-circle12 sk-child"></div>
+                      </div>
+                    </ng-container>
+                  </button>
+
+                  <div class="lastText text-center">
+                    
+                    Have An Account?
+                    <span routerLink="/dashboard/auth"
+                      >Login!</span
+                    >
+                  </div>
+                </div>
+              </ng-container>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="imageBac"></div>
+<div
+  class="modal fade"
+  id="popup"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div
+        class="
+          modal-body
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+          display
+        "
+      >
+        <!--  <img
+            src="..\..\..\assets\Account.gif"
+            class="image"
+            *ngIf="valid == true"
+          /> -->
+        <img
+          src="assets\Account.gif"
+          class="image w-75"
+          *ngIf="valid == true"
+        />
+        <img
+          src="assets\Login.gif"
+          class="image w-75"
+          *ngIf="invalid == true"
+        />
+      </div>
+      <div
+        class="
+          modal-footer
+          display
+          align-items-center
+          d-flex
+          display
+          justify-content-center
+        "
+      >
+        <h2 class="font" *ngIf="valid == true">
+          <!--  Register Done -->
+          <!-- {{ "Verify code send" | translate }} -->
+          Verify code send
+          <!--  {{ "Login succesfully" | translate }} -->
+        </h2>
+        <h2 class="font" *ngIf="invalid == true">{{ message }}</h2>
+      </div>
+    </div>
+  </div>
+</div>

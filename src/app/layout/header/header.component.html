@@ -1,0 +1,28 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container d-flex justify-content-between">
+    <a class="navbar-brand" routerLink="/home">
+      <img
+        src="assets/81672284_2616206591748334_7843994090894000128_n.png"
+        alt=""
+        width="50"
+        height="50"
+      />
+    </a>
+    <ng-container *ngIf="apiservice.switch_dashboard == false; else elseTemplate">
+        <button type="button" class="btn button" routerLink="/dashboard/ad">
+            dashboard
+          </button>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <button type="button" class="btn button" routerLink="/dashboard/auth"  *ngIf="!_auth.isUserAuth()">
+            login
+          </button>
+          <button type="button" class="btn button" (click)="signOut()"
+          *ngIf="_auth.isUserAuth()">
+            log out
+          </button>
+    </ng-template>
+    
+   
+  </div>
+</nav>
